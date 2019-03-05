@@ -1,0 +1,39 @@
+<div id="addEditProduct" *ngIf="_selectedProduct" class="card">
+        <div class="card-title">
+          <h1>Add/Edit Products</h1>
+        </div>
+        <div class="card-body form-group">
+          <form autocomplete="off">
+            <div class="row">
+              <div class="col-sm-3 col-xs-12 form-group">
+                <input type="hidden" id="productKey" [ngModel]="productKey" #productKey="ngModel" name="productKey" placeholder="Product Code">
+                <label>Product Code</label>
+                <input class="form-control" [ngModel]="productCode" (ngModelChange)="productCode = $event" name="productCode" type="text"
+                  id="productCode" placeholder="Product Code">
+              </div>
+              <div class="col-sm-3 col-xs-12 form-group">
+                <label>Product Name</label>
+                <input class="form-control" [ngModel]="productName" (ngModelChange)="productName = $event" name="productName" type="text"
+                  id="productName" placeholder="Product Name">
+              </div>
+              <div class="col-sm-3 col-xs-12 form-group">
+                <label>Start Date</label><br/>
+                <input class="form-control" [ngModel]="productStartDate|date:'yyyy-MM-dd'" name="productStartDate" type="date" id="productStartDate"
+                  (ngModelChange)="productStartDate = $event">
+              </div>
+              
+              <div class="col-sm-3 col-xs-12 form-group">
+                <label>Team</label><br/>
+                <select class="form-control" id="productTeam" [(ngModel)]="productTeam" name="productTeam" (ngModelChange)="productTeam = $event">     
+                              <option *ngFor="let team of teamList" [value]="team.teamCode" [selected]="productTeam" name="productTeam" (selected)="checkForSelect(team.teamCode)" >{{team.teamName}}</option> 
+                          </select>
+              </div>
+            </div>
+            <div class="col-sm-12 col-xs-12 mt-3 p-0">
+              <button class=" btn btn-success" (click)="saveProduct()"><i class="fa fa-save"></i> Save</button>
+              <button class=" btn btn-warning"> <i class="fa fa-window-close"></i> Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
