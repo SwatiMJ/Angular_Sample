@@ -12,16 +12,26 @@ export class ProductService {
     
 
     getProducts(): Observable<any> {
-        debugger;
+       
         return Observable.of(this.productList);
     }
 
-    insertProduct(product: Product) {        
-        //this.productList.push(product);
+    insertProduct(product: Product) {  
+        product.productKey=product.productCode;      
+        const index=this.productList.findIndex(x=>x.productKey==product.productKey);
+        if (index >= 0) {
+           this.updateProduct(product);
+
+        }else{
+        this.productList.push(product);}
     }
 
     updateProduct(product: Product) {
-        
+        const index = this.productList.findIndex(order => order.productCode === product.productCode);
+        if (index >= 0) {
+            this.productList.splice(index, 1);
+        }
+        this.productList.push(product);
     }
 
     deleteProduct(product: Product){           

@@ -48,7 +48,8 @@ import {ProductService} from '../../../core/service/product.service';
 
     }
 
-    saveProduct(){       
+    saveProduct(){     
+      
       let p : Product=new Product();
       p.productCode=this.productCode;
       p.productName=this.productName;
@@ -61,7 +62,11 @@ import {ProductService} from '../../../core/service/product.service';
     
       this._productService.updateProduct(p);
       }
-      
+      this._selectedProduct=null;
+    }
+    cancel(){
+debugger;
+      this._selectedProduct=null;
     }
     
   }
